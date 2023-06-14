@@ -35,7 +35,7 @@ export function SavedLocations({ as: _Component = _Builtin.Block }) {
                 loading="lazy"
                 width="auto"
                 height="auto"
-                src="https://uploads-ssl.webflow.com/63d85500e0557a18cd5a7601/63d85500e0557aa4fc5a7633_Group%201287.png"
+                src="https://uploads-ssl.webflow.com/648a190f1f61f1a47e05093a/648a190f1f61f1a47e0509aa_Group%201287.png"
               />
               <_Builtin.Block
                 className={_utils.cx(_styles, "temp-small")}
@@ -71,7 +71,7 @@ export function SavedLocations({ as: _Component = _Builtin.Block }) {
                 loading="lazy"
                 width="auto"
                 height="auto"
-                src="https://uploads-ssl.webflow.com/63d85500e0557a18cd5a7601/63d85500e0557ab0805a763b_Group%201263.png"
+                src="https://uploads-ssl.webflow.com/648a190f1f61f1a47e05093a/648a190f1f61f1a47e0509b1_Group%201263.png"
               />
               <_Builtin.Block
                 className={_utils.cx(_styles, "temp-small")}
@@ -107,7 +107,7 @@ export function SavedLocations({ as: _Component = _Builtin.Block }) {
                 loading="lazy"
                 width="auto"
                 height="auto"
-                src="https://uploads-ssl.webflow.com/63d85500e0557a18cd5a7601/63d85500e0557ad0845a763e_Group%201273.png"
+                src="https://uploads-ssl.webflow.com/648a190f1f61f1a47e05093a/648a190f1f61f1a47e0509b0_Group%201273.png"
               />
               <_Builtin.Block
                 className={_utils.cx(_styles, "temp-small")}

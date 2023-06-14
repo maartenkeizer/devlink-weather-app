@@ -1,4 +1,5 @@
 import * as React from "react";
+import { DevLinkContext } from "../devlinkContext";
 import * as utils from "../utils";
 export function Block({ tag = "div", ...props }) {
   return React.createElement(tag, props);
@@ -15,7 +16,15 @@ export const Link = function Link({
   button = false,
   ...props
 }) {
+  const { renderLink: UserLink } = React.useContext(DevLinkContext);
   if (button) className += " w-button";
+  if (UserLink) {
+    return (
+      <UserLink className={className} {...options} {...props}>
+        {props.children}
+      </UserLink>
+    );
+  }
   const { href, target, preload = "none" } = options;
   const shouldRenderResource =
     preload !== "none" && typeof href === "string" && !href.startsWith("#");
@@ -42,7 +51,8 @@ export function ListItem(props) {
   return React.createElement("li", props);
 }
 export function Image(props) {
-  return React.createElement("img", props);
+  const { renderImage: UserImage } = React.useContext(DevLinkContext);
+  return UserImage ? <UserImage {...props} /> : <img {...props} />;
 }
 export function Section({ tag = "section", ...props }) {
   return React.createElement(tag, props);
@@ -121,7 +131,6 @@ export function Row({ tag = "div", className = "", grid, children, ...props }) {
             new Set()
           );
           return React.cloneElement(child, {
-            // @ts-ignore
             columnClasses: [...columnClasses].join(" "),
             ...child.props,
           });

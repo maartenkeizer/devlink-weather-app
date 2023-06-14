@@ -29,4 +29,4 @@ export declare function MapWidget({
   className,
   ...props
 }: MapWidgetProps): JSX.Element;
-export default Map;
+export {};

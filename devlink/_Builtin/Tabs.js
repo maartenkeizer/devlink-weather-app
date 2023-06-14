@@ -17,6 +17,15 @@ export function TabsWrapper({
   const [current, setCurrent] = React.useState("");
   const changeTab = React.useCallback(
     (next) => {
+      function updateTab() {
+        setCurrent(() => {
+          const nextTabHeader = document.querySelector(
+            `.w-tab-link[data-w-tab="${next}"]`
+          );
+          nextTabHeader?.focus();
+          return next;
+        });
+      }
       const currentTab = document.querySelector(
         `.w-tab-pane[data-w-tab="${current}"]`
       );
@@ -31,7 +40,7 @@ export function TabsWrapper({
       });
       if (animation) {
         animation.onfinish = () => {
-          setCurrent(next);
+          updateTab();
           nextTab?.animate([{ opacity: 0 }, { opacity: 1 }], {
             duration: fadeIn,
             fill: "forwards",
@@ -39,12 +48,11 @@ export function TabsWrapper({
           });
         };
       } else {
-        setCurrent(next);
+        updateTab();
       }
     },
     [current, easing, fadeIn, fadeOut]
   );
-  // Trigger first tab change manually
   const firstRender = React.useRef(true);
   useLayoutEffect(() => {
     if (!firstRender.current) return;

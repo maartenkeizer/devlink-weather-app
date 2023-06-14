@@ -23,7 +23,7 @@ export function SevenDayForecast({
         {"7-Day Forecast"}
       </_Builtin.Block>
       <_Builtin.Block className={_utils.cx(_styles, "grid-06")} tag="div">
-        <ForecastCard />
+        <ForecastCard temp="100º" />
       </_Builtin.Block>
     </_Component>
   );

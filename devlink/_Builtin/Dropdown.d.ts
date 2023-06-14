@@ -21,6 +21,9 @@ export declare function DropdownToggle({
     "aria-expanded": boolean;
     className: string;
     onClick: () => void;
+    onKeyDown: (e: React.KeyboardEvent<Element>) => void;
+    role: string;
+    tabIndex: number;
     children?: React.ReactNode;
   },
   Element

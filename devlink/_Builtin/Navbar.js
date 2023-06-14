@@ -66,7 +66,6 @@ export function NavbarWrapper(props) {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleOpen = debounce(() => {
     if (!menu.current) return;
-    // menu is open and should be closed
     if (isOpen) {
       const keyframes = animOver
         ? getAnimationKeyframes({
@@ -89,7 +88,6 @@ export function NavbarWrapper(props) {
   });
   useLayoutEffect(() => {
     if (!menu.current) return;
-    // menu is closed and will open, but the animation only runs when isOpen is true
     if (isOpen) {
       const keyframes = animOver
         ? getAnimationKeyframes({
@@ -113,7 +111,6 @@ export function NavbarWrapper(props) {
     getOffsetHeight,
     isOpen,
   ]);
-  // if the menu is opened and noScroll === false prevent scrolling
   useLayoutEffect(() => {
     if (isOpen && noScroll) {
       document.body.style.overflowY = "hidden";
@@ -124,7 +121,6 @@ export function NavbarWrapper(props) {
       document.body.style.overflowY = "";
     };
   }, [isOpen, noScroll]);
-  // Closes menu when the window is resized
   const closeOnResize = React.useCallback(() => setIsOpen(false), [setIsOpen]);
   useResizeObserver(root, closeOnResize);
   return (
@@ -146,10 +142,6 @@ export function NavbarWrapper(props) {
     </NavbarContext.Provider>
   );
 }
-/**
- * Navbar menu gets appended to the overlay when it's open.
- * This function extracts the child menu when that's the case.
- * */
 const maybeExtractChildMenu = (children, isOpen) => {
   if (!isOpen) return { childMenu: null, rest: children };
   const { extracted, tree } = extractElement(
@@ -194,7 +186,6 @@ function NavbarOverlay({ children }) {
     React.useContext(NavbarContext);
   const overlayToggleOpen = React.useCallback(
     (e) => {
-      // prevent link clicks to close the overlay
       if (e.target === e.currentTarget) {
         toggleOpen();
       }

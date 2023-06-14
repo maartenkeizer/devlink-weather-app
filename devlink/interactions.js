@@ -66,15 +66,10 @@ export const InteractionsProvider = ({ children, createEngine }) => {
       ...data.actionLists,
     };
     if (styles) {
-      // Check if styles exist. If ixStyles.current is falsy, set it to an empty object
       ixStyles.current = ixStyles.current ?? {};
-      // Loop through each property in the styles object
       for (const s in styles) {
-        // Check if the current style is not already included in ixStyles.current
         if (!ixStyles.current[s]?.includes(styles[s])) {
-          // Get the current style value from ixStyles.current
           const currentStyle = ixStyles.current[s];
-          // Concatenate the new style with the current style (if it exists)
           ixStyles.current[s] =
             CSS.escape(styles[s]) + (currentStyle ? ` ${currentStyle}` : "");
         }

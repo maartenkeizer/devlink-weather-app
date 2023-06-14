@@ -18,13 +18,10 @@ export function FormWrapper({
       if (child.type === FormForm) {
         return React.cloneElement(child, {
           ...child.props,
-          // @ts-ignore
           onSubmit: (e) => {
             try {
               e.preventDefault();
-              // If grecaptcha is defined, it means there is a ReCaptcha in the form
               if (window.grecaptcha) {
-                // If the response is empty, it means the user didn't check the box
                 if (!window.grecaptcha?.getResponse()) {
                   alert(`Please confirm you’re not a robot.`);
                   return;
@@ -35,11 +32,6 @@ export function FormWrapper({
                 setState("success");
               }
             } catch (err) {
-              /**
-               * Capture the error to correctly set the state, but rethrow it
-               * in case another error handling method is used above up in
-               * the tree (e.g. Error Boundaries)
-               */
               setState("error");
               throw err;
             }
@@ -52,14 +44,12 @@ export function FormWrapper({
       if (child.type === FormSuccessMessage) {
         return React.cloneElement(child, {
           ...child.props,
-          // @ts-ignore
           style: { display: state == "success" ? "block" : "none" },
         });
       }
       if (child.type === FormErrorMessage) {
         return React.cloneElement(child, {
           ...child.props,
-          // @ts-ignore
           style: { display: state == "error" ? "block" : "none" },
         });
       }
@@ -123,7 +113,6 @@ export function FormCheckboxInput({
 }
 export function FormRadioInput({ className = "", inputType, ...props }) {
   if (inputType === "custom") {
-    // TODO: support FormCustomRadioInput
   }
   return React.createElement("input", {
     className: className + " w-radio-input",
@@ -347,7 +336,6 @@ export function FormErrorMessage({ className = "", ...props }) {
 }
 function hasValue(str) {
   if (typeof str !== "string") return false;
-  //   is &nbsp
   return str.replace(/^[s ]+|[s ]+$/g, "").length > 0;
 }
 export function FormSelect({ options, className = "", ...props }) {

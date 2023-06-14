@@ -60,10 +60,6 @@ export function SliderWrapper({ className = "", ...props }) {
   const [prevSelectedSlide, setPrevSelectedSlide] = React.useState(0);
   const [isAutoplayPaused, setAutoplayPause] = React.useState(false);
   const setCurrentSlide = debounce((value) => {
-    /**
-     * Using a functional update (https://legacy.reactjs.org/docs/hooks-reference.html#functional-updates)
-     * so both current and previous slide indexes are always kept in sync
-     */
     setSelectedSlide((prev) => {
       setPrevSelectedSlide(prev);
       return value;
@@ -130,11 +126,6 @@ function useAutoplay() {
     const shouldAutoplay = autoplay && !autoMaxReached && !isAutoplayPaused;
     if (shouldAutoplay) {
       const interval = setInterval(() => {
-        /**
-         * Using functional update (https://legacy.reactjs.org/docs/hooks-reference.html#functional-updates)
-         * so autoMaxCount is left out of the dependency array and we don't infinitely
-         * re-render this component
-         */
         setAutoMaxCount((prev) => prev + 1);
         goToNextSlide();
       }, delay);
@@ -171,7 +162,6 @@ export function SliderMask({ className = "", children, ...props }) {
         if (!React.isValidElement(child)) return null;
         return React.cloneElement(child, {
           ...child.props,
-          // index is used to determine which slide is active
           index,
         });
       })}
@@ -294,6 +284,7 @@ export function SliderArrow({
       onKeyDown={(e) => {
         e.stopPropagation();
         if (e.key === KEY_CODES.ENTER || e.key === KEY_CODES.SPACE) {
+          e.preventDefault();
           handleSlideChange();
         }
       }}

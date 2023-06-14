@@ -60,10 +60,11 @@ export declare function ListItem(
   },
   HTMLElement
 >;
-declare type ImageProps = React.HTMLProps<HTMLImageElement>;
-export declare function Image(
-  props: ImageProps
-): React.DetailedReactHTMLElement<ImageProps, HTMLImageElement>;
+declare type ImageProps = React.DetailedHTMLProps<
+  React.ImgHTMLAttributes<HTMLImageElement>,
+  HTMLImageElement
+>;
+export declare function Image(props: ImageProps): JSX.Element;
 export declare function Section({
   tag,
   ...props
